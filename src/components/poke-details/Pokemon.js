@@ -8,8 +8,8 @@ const Pokemon = () => {
   const pokemonDetails = useSelector((state) => state.pokeDetails)
   const { loading, pokeDetails } = pokemonDetails
 
-  const { name, order, types, sprites } = details
-  const id = (o) => o.toString().padStart(3, '0')
+  const { name, id, types, sprites } = details
+  const idToZ = (o) => o.toString().padStart(3, '0')
 
   useEffect(() => {
     setDetails(pokeDetails)
@@ -22,10 +22,10 @@ const Pokemon = () => {
       ) : (
         <>
           <h2>{name}</h2>
-          <p>{order && id(order)}</p>
+          <p>{id && idToZ(id)}</p>
           {types &&
             types.map((type, index) => <p key={index}>{type.type.name}</p>)}
-          {/* <img src={img(order)} alt={name} /> */}
+          <img src={img(id)} alt={name} />
         </>
       )}
     </div>
