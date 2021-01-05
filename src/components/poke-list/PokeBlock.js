@@ -18,26 +18,55 @@ const PokeBlock = () => {
     dispatch(pokeList())
   }, [dispatch])
 
+  const pokeListContainer = {
+    initial: {
+      y: 0,
+    },
+    visible: {
+      y: 0,
+      transition: { type: 'tween', delayChildren: 0.3, staggerChildren: 0.2 },
+    },
+  }
+
+  const pokeListItem = {
+    initial: {
+      y: 20,
+      opacity: 0,
+    },
+    visible: {
+      y: 0,
+      opacity: 1,
+    },
+  }
+
   return (
     <div className="poke-list">
       <Search />
-      <motion.div className="poke-list__overflow">
+      <div>
         {loading ? (
           <p>Loading....</p>
         ) : (
-          <>
+          <motion.div
+            variants={pokeListContainer}
+            animate="visible"
+            initial="initial"
+            className="poke-list__overflow"
+          >
             {results &&
               results.map((pkm, index) => (
-                <PokeList
+                <motion.div
                   key={index}
-                  name={pkm.name}
-                  url={pkm.url}
-                  element={'grass'}
-                />
+                  variants={pokeListItem}
+                  whileTap={{
+                    scale: 0.98,
+                  }}
+                >
+                  <PokeList name={pkm.name} url={pkm.url} element={'grass'} />
+                </motion.div>
               ))}
-          </>
+          </motion.div>
         )}
-      </motion.div>
+      </div>
     </div>
   )
 }

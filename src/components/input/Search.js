@@ -10,7 +10,6 @@ const Search = () => {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
-      <h1>{search}</h1>
     </form>
   )
 }

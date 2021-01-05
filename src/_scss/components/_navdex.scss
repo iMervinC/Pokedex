@@ -15,22 +15,22 @@
       width: 90vw;
     }
 
-    &:before {
+    .outer {
       position: absolute;
       content: '';
       width: 20px;
       height: 20px;
       background: var(--NavDex);
       right: -20px;
-    }
-    &:after {
-      position: absolute;
-      content: '';
-      width: 20px;
-      height: 20px;
-      background: white;
-      right: -20px;
-      border-radius: 50% 0 0 0;
+
+      .inner {
+        position: absolute;
+        content: '';
+        width: 20px;
+        height: 20px;
+        border-radius: 50% 0 0 0;
+        transition: background 300ms ease-in;
+      }
     }
   }
 

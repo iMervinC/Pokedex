@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
 import { getId, id, imgUrl } from '../../helper'
 import { ReactComponent as Pokeball } from '../../_images/pokeball.svg'
+
+import { useDispatch } from 'react-redux'
+import { pokeDetails } from '../../actions/pokeListActions'
 
 const PokeList = ({ url, name }) => {
   //Uppercase first letter in pokemon name
@@ -10,6 +12,7 @@ const PokeList = ({ url, name }) => {
   const pkmId = getId(url)
   const pkmUrlId = id(url)
 
+  //get pokemon details
   const [types, setTypes] = useState(null)
   const mainType = () => types && types.find((x) => x.slot === 1).type.name
 
@@ -24,20 +27,24 @@ const PokeList = ({ url, name }) => {
     getPokemon(pkmUrlId)
   }, [pkmUrlId])
 
+  //Use Redux
+  const dispatch = useDispatch()
+
+  const clickHandler = (idForUrl) => {
+    dispatch(pokeDetails(idForUrl))
+  }
+
   return (
-    <motion.div
-      whileHover={{ scale: 1.05 }}
-      whileTap={{
-        scale: 0.98,
-      }}
+    <div
       className="poke-list__items"
       style={{ background: `var(--${types ? mainType() : 'normal'})` }}
+      onClick={() => clickHandler(pkmUrlId)}
     >
       <span>#{pkmId}</span>
       <p>{nameI}</p>
       <img src={imgUrl(url)} alt={nameI} />
       <Pokeball />
-    </motion.div>
+    </div>
   )
 }
 

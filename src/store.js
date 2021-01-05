@@ -1,10 +1,11 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import { pokeListReducer } from './reducer/pokeReducer'
+import { pokeListReducer, pokeDetailsReducer } from './reducer/pokeReducer'
 
 const reducer = combineReducers({
   pokeList: pokeListReducer,
+  pokeDetails: pokeDetailsReducer,
 })
 
 const initialState = {}
