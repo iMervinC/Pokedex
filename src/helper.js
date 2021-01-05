@@ -18,3 +18,6 @@ export const imgUrl = (url) => {
   const _id = id(url)
   return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${_id}.png?raw=true`
 }
+export const img = (_id) => {
+  return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${_id}.png?raw=true`
+}
