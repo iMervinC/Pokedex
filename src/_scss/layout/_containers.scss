@@ -1,0 +1,23 @@
+.container {
+  margin: 0 auto;
+  width: 1300px;
+
+  @include respond(desktop) {
+    width: 91.43vw;
+  }
+
+  &-flex {
+    display: flex;
+    justify-content: space-between;
+    @include respond(mobile) {
+      flex-direction: column;
+    }
+  }
+
+  &-spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+  }
+}
