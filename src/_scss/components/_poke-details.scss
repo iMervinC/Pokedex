@@ -1,6 +1,96 @@
 .poke-details {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   flex-direction: column;
+  margin: 0 10px;
+
+  &__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--OffWhite);
+    width: 100%;
+    padding: 40px 0 10px;
+    margin-bottom: 20px;
+  }
+  &__name {
+    font-size: 43px;
+  }
+  &__id {
+    font-size: 43px;
+    font-weight: 600;
+  }
+  &__types {
+    justify-self: start;
+    margin-bottom: auto;
+    width: 100%;
+
+    .type {
+      display: inline-block;
+      color: var(--OffWhite);
+      text-align: center;
+      cursor: pointer;
+      width: 120px;
+      padding: 7px 20px;
+      border: solid 2px rgba(0, 0, 0, 0.452);
+      border-radius: 50px;
+      transition: all 100ms ease;
+
+      &:nth-child(2) {
+        margin-left: 10px;
+      }
+
+      &:hover {
+        box-shadow: 0px 3px 0px 0px rgba(0, 0, 0, 0.452);
+        transform: translateY(-3px);
+      }
+      &:active {
+        box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.452);
+        transform: translatey(-2px);
+      }
+    }
+  }
+
+  &__img {
+    width: 300px;
+    transform: translateY(40px);
+    user-select: none;
+  }
+  &__box {
+    height: 400px;
+    width: 100%;
+    background: var(--OffWhite);
+    border-radius: 20px 20px 0 0;
+  }
+}
+
+.radio-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  font-size: 20px;
+  margin-top: 40px;
+
+  input[type='radio'] {
+    position: absolute;
+    visibility: hidden;
+    display: none;
+  }
+
+  label {
+    color: var(--OffBlack);
+    cursor: pointer;
+    font-weight: bold;
+    padding: 5px 20px;
+    width: 100%;
+    text-align: center;
+  }
+
+  //active state
+  input[type='radio']:checked + label {
+    color: var(--Active);
+    border-bottom: solid var(--Active) 3px;
+  }
 }

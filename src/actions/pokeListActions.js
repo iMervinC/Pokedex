@@ -12,7 +12,7 @@ export const pokeList = () => async (dispatch) => {
   try {
     dispatch({ type: POKE_LIST_REQUEST })
     const { data } = await axios.get(
-      'https://pokeapi.co/api/v2/pokemon/?limit=20'
+      'https://pokeapi.co/api/v2/pokemon/?limit=50&offset=151'
     )
     dispatch({ type: POKE_LIST_SUCCESS, payload: data })
   } catch (error) {
