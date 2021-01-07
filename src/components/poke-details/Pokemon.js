@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { img } from '../../helper'
 import { useDispatch } from 'react-redux'
 import { pokeDetails as initialdata } from '../../actions/pokeListActions'
 import PokeImg from './PokeImg'
@@ -12,7 +11,7 @@ const Pokemon = () => {
   const pokemonDetails = useSelector((state) => state.pokeDetails)
   const { loading, pokeDetails } = pokemonDetails
 
-  const { name, id, types, stats } = details
+  const { name, id, types, stats, weight, height, species, abilities } = details
   const idToZ = (o) => o && o.toString().padStart(3, '0')
   const nameI = (n) => n && n[0].toUpperCase() + n.slice(1)
 
@@ -49,8 +48,14 @@ const Pokemon = () => {
               ))}
           </div>
 
-          <PokeImg url={img(id)} name={name} />
-          <PokeBox pokeId={idToZ(id)} stats={stats} />
+          <PokeImg id={id} name={name} />
+          <PokeBox
+            stats={stats}
+            url={species && species.url}
+            weight={weight}
+            height={height}
+            abilities={abilities}
+          />
         </>
       )}
     </div>

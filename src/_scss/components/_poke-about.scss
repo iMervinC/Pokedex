@@ -1,0 +1,16 @@
+.poke-about {
+  margin: 20px 20px;
+  font-size: 19px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &__titles {
+    width: 20%;
+    font-weight: 900;
+  }
+
+  &__container {
+    display: flex;
+  }
+}

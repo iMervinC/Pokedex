@@ -18,8 +18,11 @@ export const imgUrl = (url) => {
   const _id = id(url)
   return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${_id}.png?raw=true`
 }
+
 export const img = (_id) => {
   //return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${_id}.svg`
   //return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${_id}.png?raw=true`
-  return `https://cdn.traction.one/pokedex/pokemon/${_id}.png?raw=true`
+  let imgUrl = `https://cdn.traction.one/pokedex/pokemon/${_id}.png?raw=true`
+
+  return imgUrl
 }
