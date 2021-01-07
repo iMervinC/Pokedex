@@ -6,7 +6,7 @@ async function getPokemon(url, setDetails, setLoading, setError) {
     const { data } = await axios.get(url)
     setDetails(data)
     setLoading(false)
-    console.log(data)
+    //console.log(data)
   } catch (error) {
     setError(error)
   }
