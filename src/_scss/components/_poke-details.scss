@@ -72,6 +72,16 @@
   width: 100%;
   font-size: 20px;
   margin-top: 40px;
+  position: relative;
+
+  &__indicator {
+    width: 33%;
+    height: 3px;
+    background: var(--Active);
+    position: absolute;
+    top: 30px;
+    align-self: start;
+  }
 
   input[type='radio'] {
     position: absolute;
@@ -91,6 +101,5 @@
   //active state
   input[type='radio']:checked + label {
     color: var(--Active);
-    border-bottom: solid var(--Active) 3px;
   }
 }

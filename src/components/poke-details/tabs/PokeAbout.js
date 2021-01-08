@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
 
 const PokeAbout = ({ details, weight, height, abilities }) => {
   const [flavorText, setFlavorText] = useState('')
@@ -32,7 +33,11 @@ const PokeAbout = ({ details, weight, height, abilities }) => {
   const nameI = (n) => n[0].toUpperCase() + n.slice(1)
 
   return (
-    <div className="poke-about">
+    <motion.div
+      initial={{ x: 100, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      className="poke-about"
+    >
       <p>{flavorText}</p>
       <div className="poke-about__container">
         <p className="poke-about__titles">Species</p>
@@ -50,7 +55,7 @@ const PokeAbout = ({ details, weight, height, abilities }) => {
         <p className="poke-about__titles">Abilities</p>
         {abilities.map((ability) => nameI(ability.ability.name)).join(', ')}
       </div>
-    </div>
+    </motion.div>
   )
 }
 

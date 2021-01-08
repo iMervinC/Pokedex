@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { motion } from 'framer-motion'
 import PokeButton from './PokeButton'
 import PokeStats from './tabs/PokeStats'
 import PokeEvolution from './tabs/PokeEvolution'
@@ -30,17 +31,41 @@ const PokeBox = ({ url, stats, weight, height, abilities }) => {
       case 'stats':
         return <>{loading ? <p>Loading...</p> : <PokeStats stats={stats} />}</>
       case 'evolution':
-        return <>{loading ? <p>Loading...</p> : <PokeEvolution />}</>
+        return (
+          <>
+            {loading ? (
+              <p>Loading...</p>
+            ) : (
+              <PokeEvolution evoChain={details.evolution_chain} />
+            )}
+          </>
+        )
       default:
         return <PokeEvolution>Loading</PokeEvolution>
     }
   }
 
+  const selector = (whatTab) => {
+    switch (whatTab) {
+      case 'about':
+        return { left: 0 }
+      case 'evolution':
+        return { right: 0 }
+      default:
+        return {}
+    }
+  }
+
   return (
-    <div className="poke-details__box">
-      <PokeButton setState={setTab} />
+    <motion.div
+      animate={{ y: 0, opacity: 1 }}
+      initial={{ y: '100%', opacity: 0 }}
+      transition={{ type: 'tween' }}
+      className="poke-details__box"
+    >
+      <PokeButton setState={setTab} pos={selector(tab)} />
       {renderTabs(tab)}
-    </div>
+    </motion.div>
   )
 }
 

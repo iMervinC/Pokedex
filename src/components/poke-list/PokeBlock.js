@@ -3,6 +3,8 @@ import { motion } from 'framer-motion'
 import Search from '../../components/input/Search'
 import PokeList from './PokeList'
 
+import { pokeListContainer, pokeListItem } from '../../animation/animations'
+
 import { useDispatch, useSelector } from 'react-redux'
 import { pokeList } from '../../actions/pokeListActions'
 
@@ -18,34 +20,11 @@ const PokeBlock = () => {
     dispatch(pokeList())
   }, [dispatch])
 
-  const pokeListContainer = {
-    initial: {
-      y: 0,
-    },
-    visible: {
-      y: 0,
-      transition: { type: 'tween', delayChildren: 0.3, staggerChildren: 0.2 },
-    },
-  }
-
-  const pokeListItem = {
-    initial: {
-      y: 20,
-      opacity: 0,
-    },
-    visible: {
-      y: 0,
-      opacity: 1,
-    },
-  }
-
   return (
     <div className="poke-list">
       <Search />
       <div>
-        {loading ? (
-          <p>Loading....</p>
-        ) : (
+        {!loading && (
           <motion.div
             variants={pokeListContainer}
             animate="visible"

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { motion } from 'framer-motion'
 import { pokeDetails as initialdata } from '../../actions/pokeListActions'
+import { animateContainer } from '../../animation/animations'
 import PokeImg from './PokeImg'
 import PokeBox from './PokeBox'
 
@@ -27,15 +28,23 @@ const Pokemon = () => {
 
   return (
     <div className="poke-details">
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
+      {!loading && (
         <>
-          <div className="poke-details__top">
+          <motion.div
+            variants={animateContainer}
+            animate="visible"
+            initial="initial"
+            className="poke-details__top"
+          >
             <h2 className="poke-details__name">{nameI(name)}</h2>
             <p className="poke-details__id">{idToZ(id)}</p>
-          </div>
-          <div className="poke-details__types">
+          </motion.div>
+          <motion.div
+            variants={animateContainer}
+            animate="visible"
+            initial="initial"
+            className="poke-details__types"
+          >
             {types &&
               types.map((type, index) => (
                 <p
@@ -46,7 +55,7 @@ const Pokemon = () => {
                   {nameI(type.type.name)}
                 </p>
               ))}
-          </div>
+          </motion.div>
 
           <PokeImg id={id} name={name} />
           <PokeBox

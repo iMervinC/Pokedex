@@ -1,6 +1,7 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 
-const PokeButton = ({ setState }) => {
+const PokeButton = ({ setState, pos }) => {
   return (
     <div className="radio-group">
       <input
@@ -28,6 +29,11 @@ const PokeButton = ({ setState }) => {
         onClick={(e) => setState(e.target.value)}
       />
       <label htmlFor="option-three">Evolution</label>
+      <motion.span
+        layout
+        className="radio-group__indicator"
+        style={pos}
+      ></motion.span>
     </div>
   )
 }
