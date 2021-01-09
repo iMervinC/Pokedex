@@ -24,7 +24,8 @@ export const imgUrl = (url) => {
 }
 
 export const img = (_id) => {
-  let imgUrl = `https://cdn.traction.one/pokedex/pokemon/${_id}.png?raw=true`
+  //let imgUrl = `https://cdn.traction.one/pokedex/pokemon/${_id}.png?raw=true`
+  let imgUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${_id}.png`
   return imgUrl
 }
 

@@ -54,7 +54,7 @@
 
   &__img {
     width: 300px;
-    transform: translateY(40px);
+    z-index: 1;
     user-select: none;
   }
   &__box {

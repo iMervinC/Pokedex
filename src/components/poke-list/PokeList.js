@@ -42,7 +42,9 @@ const PokeList = ({ url, name }) => {
     >
       <span>#{pkmId}</span>
       <p>{nameI}</p>
+
       <img src={imgUrl(url)} alt={nameI} />
+
       <Pokeball />
     </div>
   )

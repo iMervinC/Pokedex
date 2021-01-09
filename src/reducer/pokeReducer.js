@@ -5,6 +5,8 @@ import {
   POKE_DETAILS_REQUEST,
   POKE_DETAILS_SUCCESS,
   POKE_DETAILS_FAIL,
+  POKE_ADD_REQUEST,
+  POKE_ADD_SUCCESS,
 } from '../constants/pokeConstants'
 
 export const pokeListReducer = (state = { pokeList: {} }, action) => {
@@ -15,6 +17,20 @@ export const pokeListReducer = (state = { pokeList: {} }, action) => {
       return { loading: false, pokeList: action.payload }
     case POKE_LIST_FAIL:
       return { loading: false, error: action.payload }
+
+    //Scroll Add
+    case POKE_ADD_REQUEST:
+      return { ...state, loadingAdd: true }
+    case POKE_ADD_SUCCESS:
+      return {
+        ...state,
+        loadingAdd: false,
+        pokeList: {
+          next: action.payload.next,
+          results: [...action.details, ...action.payload.results],
+        },
+      }
+
     default:
       return state
   }

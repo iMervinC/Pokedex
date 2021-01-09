@@ -23,7 +23,7 @@ const Pokemon = () => {
   //Load Default Pokemon
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(initialdata(384))
+    dispatch(initialdata(25))
   }, [dispatch])
 
   return (
@@ -57,7 +57,7 @@ const Pokemon = () => {
               ))}
           </motion.div>
 
-          <PokeImg id={id} name={name} />
+          {id && <PokeImg id={id} name={name} />}
           <PokeBox
             stats={stats}
             url={species && species.url}
