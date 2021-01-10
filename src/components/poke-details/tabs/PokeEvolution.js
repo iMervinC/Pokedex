@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import useGetEvo from '../../../hooks/useGetEvo'
 import { motion } from 'framer-motion'
 import { imgUrl } from '../../../helper'
+import PokeLoader from '../PokeLoader'
 
 const PokeEvolution = ({ evoChain }) => {
   const { details, loading } = useGetEvo(evoChain.url)
@@ -27,6 +28,11 @@ const PokeEvolution = ({ evoChain }) => {
     },
   }
 
+  const [delayLoad, setDelayLoad] = useState(true)
+
+  useEffect(() => {
+    setTimeout(() => setDelayLoad(loading), 400)
+  }, [loading])
   return (
     <div>
       <motion.p
@@ -37,7 +43,7 @@ const PokeEvolution = ({ evoChain }) => {
         Evolution Chart
       </motion.p>
 
-      {!loading ? (
+      {!delayLoad ? (
         <motion.div
           variants={container}
           initial="hidden"
@@ -62,7 +68,7 @@ const PokeEvolution = ({ evoChain }) => {
           ))}
         </motion.div>
       ) : (
-        <p>loading...</p>
+        <PokeLoader />
       )}
     </div>
   )

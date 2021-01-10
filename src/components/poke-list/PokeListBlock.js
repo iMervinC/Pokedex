@@ -1,19 +1,32 @@
-import React, { useRef, useCallback } from 'react'
-import { motion } from 'framer-motion'
+import React, { useRef, useCallback, useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import PokeList from './PokeList'
 import { useSelector, useDispatch } from 'react-redux'
 import { pokeAdd } from '../../actions/pokeListActions'
 import { pokeListContainer, pokeListItem } from '../../animation/animations'
 
-const PokeListBlock = () => {
+const PokeListBlock = ({ show }) => {
+  const dispatch = useDispatch()
   //Get Data from Redux
   const pokedex = useSelector((state) => state.pokeList)
   const { results, next } = pokedex.pokeList
   const { loading, loadingAdd } = pokedex
 
-  const dispatch = useDispatch()
+  const [delayLoad, setDelayLoad] = useState(false)
 
-  //Do somthing when the elemt with the ref callback is on screen
+  useEffect(() => {
+    setDelayLoad(results)
+  }, [])
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDelayLoad(results)
+    }, 500)
+
+    return () => clearTimeout(timer)
+  }, [loadingAdd])
+
+  //Do somthing when the element with the ref callback is on screen
   const observer = useRef()
   const lastPokemonRef = useCallback(
     (node) => {
@@ -30,39 +43,44 @@ const PokeListBlock = () => {
   )
 
   return (
-    <motion.div
-      variants={pokeListContainer}
-      animate="visible"
-      initial="initial"
-      className="poke-list__overflow"
-    >
-      {results &&
-        results.map((pkm, index) =>
-          results.length === index + 1 ? (
-            <motion.div
-              key={index}
-              ref={lastPokemonRef}
-              variants={pokeListItem}
-              whileTap={{
-                scale: 0.98,
-              }}
-            >
-              <PokeList name={pkm.name} url={pkm.url} />
-            </motion.div>
-          ) : (
-            <motion.div
-              key={index}
-              variants={pokeListItem}
-              whileTap={{
-                scale: 0.98,
-              }}
-            >
-              <PokeList name={pkm.name} url={pkm.url} />
-            </motion.div>
-          )
-        )}
-      <p>Loading...</p>
-    </motion.div>
+    <AnimatePresence>
+      {show && (
+        <motion.ul
+          variants={pokeListContainer}
+          animate="visible"
+          initial="initial"
+          exit="exit"
+          className="poke-list__overflow"
+        >
+          {delayLoad &&
+            delayLoad.map((pkm, index) =>
+              //Apply ref to the last element of the map
+              delayLoad.length === index + 1 ? (
+                <motion.li
+                  key={index}
+                  ref={lastPokemonRef}
+                  variants={pokeListItem}
+                  whileTap={{
+                    scale: 0.98,
+                  }}
+                >
+                  <PokeList name={pkm.name} url={pkm.url} />
+                </motion.li>
+              ) : (
+                <motion.li
+                  key={index}
+                  variants={pokeListItem}
+                  whileTap={{
+                    scale: 0.98,
+                  }}
+                >
+                  <PokeList name={pkm.name} url={pkm.url} />
+                </motion.li>
+              )
+            )}
+        </motion.ul>
+      )}
+    </AnimatePresence>
   )
 }
 

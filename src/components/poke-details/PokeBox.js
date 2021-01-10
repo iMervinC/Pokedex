@@ -5,6 +5,7 @@ import PokeStats from './tabs/PokeStats'
 import PokeEvolution from './tabs/PokeEvolution'
 import useFetchDetails from '../../hooks/useFetchDetails'
 import PokeAbout from './tabs/PokeAbout'
+import PokeLoader from './PokeLoader'
 
 const PokeBox = ({ url, stats, weight, height, abilities }) => {
   const [tab, setTab] = useState('about')
@@ -16,7 +17,7 @@ const PokeBox = ({ url, stats, weight, height, abilities }) => {
         return (
           <>
             {loading ? (
-              <p>Loading...</p>
+              <PokeLoader />
             ) : (
               <PokeAbout
                 loading={loading}
@@ -29,12 +30,12 @@ const PokeBox = ({ url, stats, weight, height, abilities }) => {
           </>
         )
       case 'stats':
-        return <>{loading ? <p>Loading...</p> : <PokeStats stats={stats} />}</>
+        return <PokeStats stats={stats} />
       case 'evolution':
         return (
           <>
             {loading ? (
-              <p>Loading...</p>
+              <PokeLoader />
             ) : (
               <PokeEvolution evoChain={details.evolution_chain} />
             )}

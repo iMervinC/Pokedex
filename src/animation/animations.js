@@ -1,10 +1,14 @@
 export const pokeListContainer = {
   initial: {
-    y: 0,
+    y: -10,
   },
   visible: {
     y: 0,
-    transition: { type: 'tween', delayChildren: 0.3, staggerChildren: 0.2 },
+    transition: { type: 'tween', staggerChildren: 0.2 },
+  },
+  exit: {
+    opacity: 0,
+    y: '-10vh',
   },
 }
 

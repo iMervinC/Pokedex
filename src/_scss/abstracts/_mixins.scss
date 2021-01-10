@@ -17,4 +17,9 @@
       @content;
     }
   }
+  @if $breakpoint==selector {
+    @media only screen and (max-width: 1004px) {
+      @content;
+    }
+  }
 }

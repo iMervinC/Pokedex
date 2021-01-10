@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { getId, id, imgUrl } from '../../helper'
 import { ReactComponent as Pokeball } from '../../_images/pokeball.svg'
-
 import { useDispatch } from 'react-redux'
 import { pokeDetails } from '../../actions/pokeListActions'
 
@@ -32,6 +31,9 @@ const PokeList = ({ url, name }) => {
 
   const clickHandler = (idForUrl) => {
     dispatch(pokeDetails(idForUrl))
+    if (window.innerWidth < 1005) {
+      console.log('p')
+    }
   }
 
   return (

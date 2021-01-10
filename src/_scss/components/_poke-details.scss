@@ -4,6 +4,22 @@
   justify-content: space-around;
   flex-direction: column;
   margin: 0 10px;
+  @include respond(tablet) {
+    overflow-x: auto;
+    //overflow-y: hidden;
+  }
+
+  &__imgbox {
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    .arrow {
+      width: 20px;
+      cursor: pointer;
+    }
+  }
 
   &__top {
     display: flex;
@@ -54,8 +70,15 @@
 
   &__img {
     width: 300px;
-    z-index: 1;
+
     user-select: none;
+
+    @include respond(selector) {
+      width: 40vw;
+    }
+    @include respond(mobile) {
+      width: 150px;
+    }
   }
   &__box {
     height: 400px;

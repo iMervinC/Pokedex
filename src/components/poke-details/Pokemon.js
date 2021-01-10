@@ -5,6 +5,8 @@ import { pokeDetails as initialdata } from '../../actions/pokeListActions'
 import { animateContainer } from '../../animation/animations'
 import PokeImg from './PokeImg'
 import PokeBox from './PokeBox'
+import right from '../../_images/right.svg'
+import left from '../../_images/left.svg'
 
 const Pokemon = () => {
   const [details, setDetails] = useState({})
@@ -56,8 +58,28 @@ const Pokemon = () => {
                 </p>
               ))}
           </motion.div>
+          <div className="poke-details__imgbox">
+            <motion.img
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="arrow"
+              src={left}
+              alt="left"
+              onClick={() => dispatch(initialdata(id - 1))}
+            />
+            {id && <PokeImg id={id} name={name} />}
+            <motion.img
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="arrow"
+              src={right}
+              alt="right"
+              onClick={() => dispatch(initialdata(id + 1))}
+            />
+          </div>
 
-          {id && <PokeImg id={id} name={name} />}
           <PokeBox
             stats={stats}
             url={species && species.url}

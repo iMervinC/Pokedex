@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import lens from '../_images/Lens.svg'
+import pokelogo from '../_images/Pokemon_logo.svg'
 
 import { useSelector } from 'react-redux'
 
@@ -23,6 +24,24 @@ const NavDex = () => {
 
   return (
     <header className="navdex">
+      <motion.div className="container navdex__navbar">
+        <motion.img
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ type: 'spring', delay: 0.2 }}
+          src={lens}
+          alt="lens"
+          className="navdex__navbar__lens"
+        />
+        <motion.img
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ type: 'spring', delay: 0.2 }}
+          src={pokelogo}
+          alt="lens"
+          className="navdex__navbar__logo"
+        />
+      </motion.div>
       <div className="navdex navdex__extension">
         <span className="outer">
           <span
@@ -33,16 +52,6 @@ const NavDex = () => {
           ></span>
         </span>
       </div>
-      <motion.div className="container">
-        <motion.img
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ type: 'spring', delay: 0.2 }}
-          src={lens}
-          alt="lens"
-          className="navdex__lens"
-        />
-      </motion.div>
     </header>
   )
 }
