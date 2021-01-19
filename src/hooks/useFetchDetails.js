@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useDebugValue } from 'react'
 import axios from 'axios'
 
 async function getPokemon(url, setDetails, setLoading, setError) {
@@ -25,6 +25,9 @@ const useFetchDetails = (url) => {
       setError(null)
     }
   }, [url])
+
+  useDebugValue('fetchDetails' ?? 'loading...')
+
   return { details, loading, error }
 }
 export default useFetchDetails

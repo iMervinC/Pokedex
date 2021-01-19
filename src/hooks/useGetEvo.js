@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useDebugValue } from 'react'
 import { getIdUrl } from '../helper'
 import axios from 'axios'
 
@@ -44,6 +44,9 @@ const useGetEvo = (url) => {
       setError(null)
     }
   }, [url])
+
+  useDebugValue('getEvo' ?? 'Loading...')
+
   return { details, loading, error }
 }
 export default useGetEvo
