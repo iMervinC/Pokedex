@@ -1,6 +1,4 @@
-##Pokedex App made using pokeapi.com
-
-## Welcome! 👋
+## Pokedex App made using pokeapi.com
 
 Live Demo Hosted @ [Vercel](https://pokedex-imervinc.vercel.app/)
 
