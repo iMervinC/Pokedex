@@ -1,5 +1,5 @@
 ## Pokedex App made using pokeapi.com
-
+<img src='https://raw.githubusercontent.com/iMervinC/Pokedex/main/ezgif-7-05087edcaa3b.gif'/>
 Live Demo Hosted @ [Vercel](https://pokedex-imervinc.vercel.app/)
 
 ## Technologies used
